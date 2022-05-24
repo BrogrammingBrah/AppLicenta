@@ -222,6 +222,7 @@ namespace GraficFunctii2Var
             System.Drawing.Font f = new System.Drawing.Font("Courier New", 14);
             Pen creion = new Pen(Color.Black, 3);
             g.DrawString("O", f, Brushes.Blue, daCoord(0, 0));
+
             g.DrawLine(creion, daCoord(a, 0).X, daCoord(a, 0).Y - 6, daCoord(a, 0).X, daCoord(a, 0).Y + 6);
             g.DrawString("a", f, Brushes.Blue, daCoord(a, 0));
             g.DrawLine(creion, daCoord(b, 0).X, daCoord(b, 0).Y - 6, daCoord(b, 0).X, daCoord(b, 0).Y + 6);
