@@ -6,10 +6,42 @@
         xmlns:local="clr-namespace:GraficFunctii2Var"
         mc:Ignorable="d"
         Title="Grafic functii" Height="450" Width="800" Loaded="Window_Loaded"
-        KeyDown="Window_KeyDown">
-    <Grid>
-        <Viewport3D Grid.Row="0" Grid.Column="0" Name="MainViewport" />
-        <Button Content="Deseneaza" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+         MouseDown="Window_MouseDown">
+      <!--MouseMove="Window_MouseMove"-->
+   
+
+
+
+    <Grid RenderTransformOrigin="0.5,0.5">
+
+
+
+        <Grid HorizontalAlignment="Left" Height="314" Margin="413,93,0,0" VerticalAlignment="Top" Width="332"/>
+
+
+
+        <Viewport3D  Grid.Row="0" Grid.Column="0" x:Name="MainViewport" Margin="10,155,426,27" />
+        <Grid HorizontalAlignment="Left" Height="37" Margin="0,10,0,0" VerticalAlignment="Top" Width="781">
+            <Button Content="Deseneaza" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Click="Button_Click" Margin="10,7,0,0"/>
+            <Button Content="Aria suprafetei" HorizontalAlignment="Left" Height="20" Margin="108,7,0,0" VerticalAlignment="Top" Width="90"/>
+            <Button Content="Integrala din f" HorizontalAlignment="Left" Height="20" Margin="222,7,0,0" VerticalAlignment="Top" Width="90"/>
+        </Grid>
+        <Grid HorizontalAlignment="Center" Height="32" Margin="0,47,0,0" VerticalAlignment="Top" Width="798">
+            <Label Content="f(x)=" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Height="32" Width="32"/>
+            <TextBox x:Name="functia" HorizontalAlignment="Left" Height="22" Margin="47,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="720" TextChanged="TextBox_TextChanged"/>
+
+        </Grid>
+        <Grid HorizontalAlignment="Center" Height="37" Margin="-4,93,426,0" VerticalAlignment="Top" Width="370">
+            <TextBox x:Name="xmic" HorizontalAlignment="Left" Margin="10,8,0,5" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="25" Height="24" TextChanged="TextBox_TextChanged_1"/>
+            <Label Content="x" HorizontalAlignment="Left" Margin="39,6,0,5" VerticalAlignment="Center" Width="20"/>
+            <TextBox x:Name="xmare" HorizontalAlignment="Left" Margin="59,7,0,5" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="25" Height="25"/>
+            <TextBox x:Name="zmic" HorizontalAlignment="Left" Margin="148,8,0,4" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="25" Height="25"/>
+            <TextBox x:Name="zmare" HorizontalAlignment="Left" Margin="198,8,0,5" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="25" Height="24"/>
+            <Label Content="y" HorizontalAlignment="Left" Margin="178,6,0,5" VerticalAlignment="Center" Width="20"/>
+        </Grid>
+        <Label Content="Aria suprafetei calculata numeric" HorizontalAlignment="Left" Margin="434,99,0,0" VerticalAlignment="Top"/>
+        <Label Content="Integrala din functia data, folosind algoritmi numerici" HorizontalAlignment="Left" Margin="434,137,0,0" VerticalAlignment="Top"/>
+        <TextBox  HorizontalAlignment="Left" Height="23" Margin="444,178,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </Window>
