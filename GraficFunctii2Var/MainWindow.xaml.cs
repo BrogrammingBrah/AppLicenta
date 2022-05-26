@@ -17,7 +17,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Media.Media3D;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-//using MathNet.Numerics; no need for thisd
 using static _3DTools.ScreenSpaceLines3D;
 
 namespace GraficFunctii2Var
@@ -165,6 +164,9 @@ namespace GraficFunctii2Var
 
 
         }
+
+       
+
         // functia de reprezentat grafic
 
 
@@ -196,49 +198,7 @@ namespace GraficFunctii2Var
          }*/
 
 
-        /// sist de axe 2d,3d
-       /* Point daCoord(double x, double y)
-        {
-            int x0 = (int)((x - a) * raport + 50 + (400 - (b - a) * raport) / 2);
-            int y0 = (int)((M - y) * raport + 50 + (400 - (M - m) * raport) / 2);
-            return new Point(x0, y0);
-        }
 
-        void deseneazaAxe()
-        {
-            g.Clear(Color.White);
-            g.FillRectangle(Brushes.LightGray, 25, 25, 450, 450);
-            Pen creion = new Pen(Color.Black, 3);
-            g.DrawLine(creion, 25, daCoord(a, 0).Y, 475, daCoord(a, 0).Y);
-            g.DrawLine(creion, 469, daCoord(a, 0).Y - 6, 475, daCoord(a, 0).Y);
-            g.DrawLine(creion, 469, daCoord(a, 0).Y + 6, 475, daCoord(a, 0).Y);
-            g.DrawLine(creion, daCoord(0, m).X, 475, daCoord(0, m).X, 25);
-            g.DrawLine(creion, daCoord(0, m).X - 6, 31, daCoord(0, m).X, 25);
-            g.DrawLine(creion, daCoord(0, m).X + 6, 31, daCoord(0, m).X, 25);
-            p.Refresh();
-        }
-        void scrieCoordonate()
-        {
-            System.Drawing.Font f = new System.Drawing.Font("Courier New", 14);
-            Pen creion = new Pen(Color.Black, 3);
-            g.DrawString("O", f, Brushes.Blue, daCoord(0, 0));
-
-            g.DrawLine(creion, daCoord(a, 0).X, daCoord(a, 0).Y - 6, daCoord(a, 0).X, daCoord(a, 0).Y + 6);
-            g.DrawString("a", f, Brushes.Blue, daCoord(a, 0));
-            g.DrawLine(creion, daCoord(b, 0).X, daCoord(b, 0).Y - 6, daCoord(b, 0).X, daCoord(b, 0).Y + 6);
-            g.DrawString("b", f, Brushes.Blue, daCoord(b, 0));
-            g.DrawLine(creion, daCoord(0, M).X - 6, daCoord(0, M).Y, daCoord(0, M).X + 6, daCoord(0, M).Y);
-            g.DrawString("M", f, Brushes.Blue, daCoord(0, M).X + 6, daCoord(0, M).Y - 6);
-            g.DrawLine(creion, daCoord(0, m).X - 6, daCoord(0, m).Y, daCoord(0, m).X + 6, daCoord(0, m).Y);
-            g.DrawString("m", f, Brushes.Blue, daCoord(0, m).X + 6, daCoord(0, m).Y - 6);
-            g.DrawString("a=" + a, f, Brushes.Blue, 25, 0);
-            g.DrawString("b=" + b, f, Brushes.Blue, 125, 0);
-            g.DrawString("m=" + ((int)(m * 100000) / 100000.0), f, Brushes.Blue, 225, 0);
-            g.DrawString("M=" + ((int)(M * 100000) / 100000.0), f, Brushes.Blue, 355, 0);
-            p.Refresh();
-        }
-
-        */
 
         void test_campuri()
         {//verificam corectitudinea valorilor introduse in campuri
@@ -319,26 +279,49 @@ namespace GraficFunctii2Var
                 throw new Exception("Expresia data nu este corecta!");
             }
         }
-
-        private double F(double x, double z)
-        // private double F(double val)
+        /*
+        double integreaza(String expresie)
         {
-            //            double r2 = x * x + z * z;
-            //           return 8 * Math.Cos(r2 / 2) / (2 + r2);
-            //   double rr = 8 * Math.Cos((x * x + z * z) / 2) / (2 + x * x + z * z);
-            //  return rr;
-            //  r = Convert.ToDouble(functia.Text);
-            //return r;
+            if (expresie.Trim().Length == 0) return 0;
+            int pozitie;
+            pozitie = da_pozitie(expresie, '+');
+            if (pozitie >= 0) return calculeaza(expresie.Substring(0, pozitie)) + calculeaza(expresie.Substring(pozitie + 1));
+            pozitie = da_pozitie(expresie, '-');
+            if (pozitie >= 0) return calculeaza(expresie.Substring(0, pozitie)) - calculeaza(expresie.Substring(pozitie + 1));
+            pozitie = da_pozitie(expresie, '*');
+            if (pozitie >= 0) return calculeaza(expresie.Substring(0, pozitie)) * calculeaza(expresie.Substring(pozitie + 1));
+            pozitie = da_pozitie(expresie, '/');
+            if (pozitie >= 0)
+            {
+                double val1 = calculeaza(expresie.Substring(0, pozitie));
+                double val2 = calculeaza(expresie.Substring(pozitie + 1));
+                if (val2 != 0) return val1 / val2;
+                return Double.MaxValue;
+            }
+            if (expresie.StartsWith("sin(") && expresie.EndsWith(")")) return Math.Sin(calculeaza(expresie.Substring(4, expresie.Length - 5)));
+            if (expresie.StartsWith("cos(") && expresie.EndsWith(")")) return Math.Cos(calculeaza(expresie.Substring(4, expresie.Length - 5)));
+            if (expresie.StartsWith("tg(") && expresie.EndsWith(")")) return Math.Tan(calculeaza(expresie.Substring(3, expresie.Length - 4)));
+            if (expresie.StartsWith("ln(") && expresie.EndsWith(")")) return Math.Log(calculeaza(expresie.Substring(3, expresie.Length - 4))) / Math.Log(Math.E);
+            if (expresie.StartsWith("exp(") && expresie.EndsWith(")")) return Math.Exp(calculeaza(expresie.Substring(4, expresie.Length - 5)));
+            if (expresie.StartsWith("(") && expresie.EndsWith(")")) return calculeaza(expresie.Substring(1, expresie.Length - 2));
+            if (expresie.ToLower() == "x") return X;
+            if (expresie.ToLower() == "y") return Y;
+            try
+            {
+                return Convert.ToDouble(expresie);
+            }
+            catch (System.Exception)
+            {
+                throw new Exception("Expresia data nu este corecta!");
+            }
+        }
+        */
+        private double F(double x, double z)
+        {   
             X = x;
             Y = z;
-            //            Y=y;
             return calculeaza(functia.Text);
         }
-
-
-
-
-
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -382,13 +365,89 @@ namespace GraficFunctii2Var
                 MainViewport.Children.Add(model_visual);
             }
             catch
+            {   MainViewport.Children.Clear();
+                
+                //  MainModel3Dgroup
+
+            }
+        }
+
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            int N = 1000;
+            double S = 0, SS = 0;
+            // o sa am N+1 elem si N intervale
+            try
             {
-                MainModel3Dgroup.ClearValue((DependencyProperty)Content);
+                xmin = Convert.ToDouble(xmic.Text);
+                xmax = Convert.ToDouble(xmare.Text);
+                zmin = Convert.ToDouble(zmic.Text);
+                zmax = Convert.ToDouble(zmare.Text);
+                double[] x1 = new double[N];
+                double[] z1 = new double[N];
+                //x2, y1,y2;
+                double ix = xmin, stepx = Math.Abs((xmax - xmin) / N);
+                int j = 0, k = 0;
+                while (j < N)
+                {
+                    x1[j] = ix;
+                    j++;
+                    ix = ix + stepx;
+                }
+                double iz = zmin, stepz = Math.Abs((zmax - zmin) / N);
+                while (k < N)
+                {
+                    z1[k] = iz;
+                    k++;
+                    iz = iz + stepz;
+                }
+                if (Y == 0)
+                {
+                    for (int i = 1; i < N; i++)
+                    {
+                        S += stepx * F((x1[i] + x1[i - 1]) / 2, 0);
+                    }
+                    Integralblock.Text = S.ToString();
+                }
+                else
+                {
+                    for (int ii = 1; ii < N; ii++)
+                    {
+                        for (int jj = 1; jj < N; jj++)
+                        {
+                            SS += stepx * stepz * (F((x1[ii] + x1[ii - 1]) / 2, (z1[jj] + z1[jj - 1]) / 2));
+                        }
+                    }
+                    Integralblock.Text = SS.ToString();
+                }
+
+                //CameraR = 13.0;
+
+                //// Create the model.
+                //generareGrafic(MainModel3Dgroup);
+
+                //PositionCamera();
+                //// Define lights.
+                //DefineLights();
+
+                //// Add the group of models to a ModelVisual3D.
+                //ModelVisual3D model_visual = new ModelVisual3D();
+                //model_visual.Content = MainModel3Dgroup;
+
+                //// Add the main visual to the viewportt.
+                //MainViewport.Children.Add(model_visual);
+            }
+            catch
+            {
+                // MainModel3Dgroup.ClearValue((DependencyProperty)Content);
 
                 //  MainModel3Dgroup
 
             }
         }
+
+
 
         // raised when the mouse pointer moves.
         // Expands the dimensions of an Ellipse when the mouse moves.
@@ -475,11 +534,5 @@ namespace GraficFunctii2Var
                // actualizam pozitia camerei
                PositionCamera();
            }
-           
-
-      
-
-
-    }
-
+     }
 }

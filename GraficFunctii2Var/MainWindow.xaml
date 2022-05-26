@@ -7,8 +7,8 @@
         mc:Ignorable="d"
         Title="Grafic functii" Height="450" Width="800" Loaded="Window_Loaded"
          MouseDown="Window_MouseDown">
-      <!--MouseMove="Window_MouseMove"-->
-   
+    <!--MouseMove="Window_MouseMove"-->
+
 
 
 
@@ -16,7 +16,9 @@
 
 
 
-        <Grid HorizontalAlignment="Left" Height="314" Margin="413,93,0,0" VerticalAlignment="Top" Width="332"/>
+        <Grid HorizontalAlignment="Left" Height="314" Margin="413,93,0,0" VerticalAlignment="Top" Width="332">
+            <TextBlock Name="Integralblock" HorizontalAlignment="Left" Margin="18,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="26" Width="119"/>
+        </Grid>
 
 
 
@@ -24,7 +26,7 @@
         <Grid HorizontalAlignment="Left" Height="37" Margin="0,10,0,0" VerticalAlignment="Top" Width="781">
             <Button Content="Deseneaza" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Click="Button_Click" Margin="10,7,0,0"/>
             <Button Content="Aria suprafetei" HorizontalAlignment="Left" Height="20" Margin="108,7,0,0" VerticalAlignment="Top" Width="90"/>
-            <Button Content="Integrala din f" HorizontalAlignment="Left" Height="20" Margin="222,7,0,0" VerticalAlignment="Top" Width="90"/>
+            <Button Content="Integrala din f" HorizontalAlignment="Left" Height="20" Margin="222,7,0,0" VerticalAlignment="Top" Width="90" Click="Button_Click_1"/>
         </Grid>
         <Grid HorizontalAlignment="Center" Height="32" Margin="0,47,0,0" VerticalAlignment="Top" Width="798">
             <Label Content="f(x)=" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Height="32" Width="32"/>
@@ -39,9 +41,7 @@
             <TextBox x:Name="zmare" HorizontalAlignment="Left" Margin="198,8,0,5" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="25" Height="24"/>
             <Label Content="y" HorizontalAlignment="Left" Margin="178,6,0,5" VerticalAlignment="Center" Width="20"/>
         </Grid>
-        <Label Content="Aria suprafetei calculata numeric" HorizontalAlignment="Left" Margin="434,99,0,0" VerticalAlignment="Top"/>
-        <Label Content="Integrala din functia data, folosind algoritmi numerici" HorizontalAlignment="Left" Margin="434,137,0,0" VerticalAlignment="Top"/>
-        <TextBox  HorizontalAlignment="Left" Height="23" Margin="444,178,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="Integralbox"  HorizontalAlignment="Left" Height="22" Margin="429,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </Window>
