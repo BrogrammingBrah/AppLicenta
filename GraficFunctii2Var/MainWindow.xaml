@@ -16,13 +16,14 @@
 
 
 
-        <Grid HorizontalAlignment="Left" Height="314" Margin="413,93,0,0" VerticalAlignment="Top" Width="332">
-            <TextBlock Name="Integralblock" HorizontalAlignment="Left" Margin="18,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="26" Width="119"/>
+        <Grid HorizontalAlignment="Left" Height="252" Margin="413,155,0,0" VerticalAlignment="Top" Width="332">
+            <TextBlock Name="Integralblock" HorizontalAlignment="Left" Margin="60,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="26" Width="119"/>
+            <TextBlock Name="Errorblock" HorizontalAlignment="Left" Margin="60,137,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="20" Width="119"/>
         </Grid>
 
 
 
-        <Viewport3D  Grid.Row="0" Grid.Column="0" x:Name="MainViewport" Margin="10,155,426,27" />
+        <Viewport3D  Grid.Row="0" Grid.Column="0" x:Name="MainViewport" Margin="10,189,479,27" />
         <Grid HorizontalAlignment="Left" Height="37" Margin="0,10,0,0" VerticalAlignment="Top" Width="781">
             <Button Content="Deseneaza" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Click="Button_Click" Margin="10,7,0,0"/>
             <Button Content="Aria suprafetei" HorizontalAlignment="Left" Height="20" Margin="108,7,0,0" VerticalAlignment="Top" Width="90"/>
@@ -34,14 +35,15 @@
 
         </Grid>
         <Grid HorizontalAlignment="Center" Height="37" Margin="-4,93,426,0" VerticalAlignment="Top" Width="370">
-            <TextBox x:Name="xmic" HorizontalAlignment="Left" Margin="10,8,0,5" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="25" Height="24" TextChanged="TextBox_TextChanged_1"/>
-            <Label Content="x" HorizontalAlignment="Left" Margin="39,6,0,5" VerticalAlignment="Center" Width="20"/>
-            <TextBox x:Name="xmare" HorizontalAlignment="Left" Margin="59,7,0,5" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="25" Height="25"/>
-            <TextBox x:Name="zmic" HorizontalAlignment="Left" Margin="148,8,0,4" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="25" Height="25"/>
-            <TextBox x:Name="zmare" HorizontalAlignment="Left" Margin="198,8,0,5" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="25" Height="24"/>
+            <TextBox x:Name="xmic" HorizontalAlignment="Left" Margin="10,8,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="33" Height="25" TextChanged="TextBox_TextChanged_1"/>
+            <Label Content="x" HorizontalAlignment="Left" Margin="48,0,0,0" VerticalAlignment="Center" Width="20"/>
+            <TextBox x:Name="xmare" HorizontalAlignment="Left" Margin="68,8,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="33" Height="25"/>
+            <TextBox x:Name="zmic" HorizontalAlignment="Left" Margin="140,8,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="33" Height="25"/>
+            <TextBox x:Name="zmare" HorizontalAlignment="Left" Margin="198,8,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="33" Height="25"/>
             <Label Content="y" HorizontalAlignment="Left" Margin="178,6,0,5" VerticalAlignment="Center" Width="20"/>
         </Grid>
-        <TextBox Name="Integralbox"  HorizontalAlignment="Left" Height="22" Margin="429,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="Suprafatabox"  HorizontalAlignment="Left" Height="26" Margin="65,155,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="z(x,y)" HorizontalAlignment="Left" Margin="10,155,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

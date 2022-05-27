@@ -130,15 +130,28 @@ namespace GraficFunctii2Var
                     adaugaElementSuprafata(mesh, p00, p01, p11, p10);
                 }
             }
-            // Coloram suprafata cu o culoare mata
-            DiffuseMaterial surface_material = new DiffuseMaterial(Brushes.Orange);
+
+            for (double x = xmin; x <= xmax - dx; x += dx)
+            {
+                for (double z = zmin; z <= zmax - dz; z += dx)
+                {
+                    Point3D p00 = new Point3D(x, F(0, 0), z);
+                    Point3D p10 = new Point3D(x + dx, F(0 + dx, 0), z);
+                    Point3D p01 = new Point3D(x, F(0, 0 + dz), z + dz);
+                    Point3D p11 = new Point3D(x + dx, F(0 + dx, 0 + dz), z + dz);
+
+                    // adaugam elementul corespunzator
+                    adaugaElementSuprafata(mesh, p00, p01, p11, p10);
+                }
+            }
+
+                    // Coloram suprafata cu o culoare mata
+                    DiffuseMaterial surface_material = new DiffuseMaterial(Brushes.BlueViolet);
             GeometryModel3D surface_model = new GeometryModel3D(mesh, surface_material);
             // facem suprafata vizibila pe ambele fete
             surface_model.BackMaterial = surface_material;
             // adaugam suprafata
             model_group.Children.Add(surface_model);
-
-
 
 
             Point3DCollection point3Ds_X = new Point3DCollection();
@@ -164,40 +177,8 @@ namespace GraficFunctii2Var
 
 
         }
-
-       
-
+   
         // functia de reprezentat grafic
-
-
-        /* private void generareGrafic(Model3DGroup model_group)
-         {
-             //cream suprafata.
-             MeshGeometry3D mesh = new MeshGeometry3D();
-             // generam punctele si triunghiurile suprafetei
-             for (double x = xmin; x <= xmax - dx; x += dx)
-             {
-                 for (double z = zmin; z <= zmax - dz; z += dx)
-                 {
-                     Point3D p00 = new Point3D(x, F(x, z), z);
-                     Point3D p10 = new Point3D(x + dx, F(x + dx, z), z);
-                     Point3D p01 = new Point3D(x, F(x, z + dz), z + dz);
-                     Point3D p11 = new Point3D(x + dx, F(x + dx, z + dz), z + dz);
-
-                     // adaugam elementul corespunzator
-                     adaugaElementSuprafata(mesh, p00, p01, p11, p10);
-                 }
-             }
-             // Coloram suprafata cu o culoare mata
-             DiffuseMaterial surface_material = new DiffuseMaterial(Brushes.Orange);
-             GeometryModel3D surface_model = new GeometryModel3D(mesh, surface_material);
-             // facem suprafata vizibila pe ambele fete
-             surface_model.BackMaterial = surface_material;
-             // adaugam suprafata
-             model_group.Children.Add(surface_model);
-         }*/
-
-
 
 
         void test_campuri()
@@ -279,43 +260,7 @@ namespace GraficFunctii2Var
                 throw new Exception("Expresia data nu este corecta!");
             }
         }
-        /*
-        double integreaza(String expresie)
-        {
-            if (expresie.Trim().Length == 0) return 0;
-            int pozitie;
-            pozitie = da_pozitie(expresie, '+');
-            if (pozitie >= 0) return calculeaza(expresie.Substring(0, pozitie)) + calculeaza(expresie.Substring(pozitie + 1));
-            pozitie = da_pozitie(expresie, '-');
-            if (pozitie >= 0) return calculeaza(expresie.Substring(0, pozitie)) - calculeaza(expresie.Substring(pozitie + 1));
-            pozitie = da_pozitie(expresie, '*');
-            if (pozitie >= 0) return calculeaza(expresie.Substring(0, pozitie)) * calculeaza(expresie.Substring(pozitie + 1));
-            pozitie = da_pozitie(expresie, '/');
-            if (pozitie >= 0)
-            {
-                double val1 = calculeaza(expresie.Substring(0, pozitie));
-                double val2 = calculeaza(expresie.Substring(pozitie + 1));
-                if (val2 != 0) return val1 / val2;
-                return Double.MaxValue;
-            }
-            if (expresie.StartsWith("sin(") && expresie.EndsWith(")")) return Math.Sin(calculeaza(expresie.Substring(4, expresie.Length - 5)));
-            if (expresie.StartsWith("cos(") && expresie.EndsWith(")")) return Math.Cos(calculeaza(expresie.Substring(4, expresie.Length - 5)));
-            if (expresie.StartsWith("tg(") && expresie.EndsWith(")")) return Math.Tan(calculeaza(expresie.Substring(3, expresie.Length - 4)));
-            if (expresie.StartsWith("ln(") && expresie.EndsWith(")")) return Math.Log(calculeaza(expresie.Substring(3, expresie.Length - 4))) / Math.Log(Math.E);
-            if (expresie.StartsWith("exp(") && expresie.EndsWith(")")) return Math.Exp(calculeaza(expresie.Substring(4, expresie.Length - 5)));
-            if (expresie.StartsWith("(") && expresie.EndsWith(")")) return calculeaza(expresie.Substring(1, expresie.Length - 2));
-            if (expresie.ToLower() == "x") return X;
-            if (expresie.ToLower() == "y") return Y;
-            try
-            {
-                return Convert.ToDouble(expresie);
-            }
-            catch (System.Exception)
-            {
-                throw new Exception("Expresia data nu este corecta!");
-            }
-        }
-        */
+       
         private double F(double x, double z)
         {   
             X = x;
@@ -335,11 +280,6 @@ namespace GraficFunctii2Var
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            /*       xmin = -3.5;
-                   xmax = 3.5;
-                   zmin = -3.5;
-                   zmax = 3.5;
-              */
             try
             {
                 xmin = Convert.ToDouble(xmic.Text);
@@ -422,21 +362,11 @@ namespace GraficFunctii2Var
                     Integralblock.Text = SS.ToString();
                 }
 
-                //CameraR = 13.0;
-
-                //// Create the model.
-                //generareGrafic(MainModel3Dgroup);
-
-                //PositionCamera();
-                //// Define lights.
-                //DefineLights();
-
-                //// Add the group of models to a ModelVisual3D.
-                //ModelVisual3D model_visual = new ModelVisual3D();
-                //model_visual.Content = MainModel3Dgroup;
-
-                //// Add the main visual to the viewportt.
-                //MainViewport.Children.Add(model_visual);
+                double xcopie = X+1;
+                double erroare = (xcopie * ((xmax - xmin) * (xmax - xmin) * (xmax - xmin))) / (24 * N * N);
+                Errorblock.Text=erroare.ToString();
+            
+            
             }
             catch
             {
@@ -449,19 +379,7 @@ namespace GraficFunctii2Var
 
 
 
-        // raised when the mouse pointer moves.
-        // Expands the dimensions of an Ellipse when the mouse moves.
-        /*    private void MouseMoveHandler(object sender, MouseEventArgs e)
-            {
-                // Get the x and y coordinates of the mouse pointer.
-                System.Windows.Point position = e.GetPosition(this);
-                double pX = position.X;
-                double pY = position.Y;
-
-                // Sets the Height/Width of the circle to the mouse coordinates.
-                MainModel3Dgroup.Width = pX;
-                ellipse.Height = pY;
-            }*/
+        
 
         // modificam pozitia camerei
         /* private void Window_KeyDown(object sender, KeyEventArgs e)
@@ -520,18 +438,7 @@ namespace GraficFunctii2Var
                    case MouseButton.Right:
                        CameraTheta -= CameraDTheta;
                        break;
-                 /*  case Key.Add:
-                   case Key.OemPlus:
-                       CameraR -= CameraDR;
-                       if (CameraR < CameraDR) CameraR = CameraDR;
-                       break;
-                   case Key.Subtract:
-                   case Key.OemMinus:
-                       CameraR += CameraDR;
-                       break;
-               */}
-
-               // actualizam pozitia camerei
+                }
                PositionCamera();
            }
      }
