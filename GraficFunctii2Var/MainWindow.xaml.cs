@@ -146,7 +146,7 @@ namespace GraficFunctii2Var
             }
 
                     // Coloram suprafata cu o culoare mata
-                    DiffuseMaterial surface_material = new DiffuseMaterial(Brushes.BlueViolet);
+            DiffuseMaterial surface_material = new DiffuseMaterial(Brushes.BlueViolet);
             GeometryModel3D surface_model = new GeometryModel3D(mesh, surface_material);
             // facem suprafata vizibila pe ambele fete
             surface_model.BackMaterial = surface_material;
@@ -282,6 +282,8 @@ namespace GraficFunctii2Var
         {
             try
             {
+                // model_visual.Children.Remove(MainModel3Dgroup);
+                MainModel3Dgroup.Children.Clear();
                 xmin = Convert.ToDouble(xmic.Text);
                 xmax = Convert.ToDouble(xmare.Text);
                 zmin = Convert.ToDouble(zmic.Text);
@@ -305,7 +307,8 @@ namespace GraficFunctii2Var
                 MainViewport.Children.Add(model_visual);
             }
             catch
-            {   MainViewport.Children.Clear();
+            {
+                MainModel3Dgroup.Children.Clear();
                 
                 //  MainModel3Dgroup
 
